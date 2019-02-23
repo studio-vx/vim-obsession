@@ -9,6 +9,7 @@ let g:loaded_obsession = 1
 
 command! -bar -bang -complete=file -nargs=? Obsession
       \ execute s:dispatch(<bang>0, <q-args>)
+command! ObsessionSave execute s:save()
 
 function! s:dispatch(bang, file) abort
   let session = get(g:, 'this_obsession', v:this_session)
@@ -114,6 +115,11 @@ function! ObsessionStatus(...) abort
     let fmt = get(args, 2-numeric, '')
   endif
   return substitute(fmt, '%s', get(['', 'Session', 'Obsession'], numeric), 'g')
+endfunction
+
+function! s:save() abort
+  execute s:persist()
+  echom 'Obsession: session saved.'
 endfunction
 
 augroup obsession
