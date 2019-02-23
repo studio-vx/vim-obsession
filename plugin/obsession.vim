@@ -1,7 +1,6 @@
-" obsession.vim - Continuously updated session files
-" Maintainer:   Tim Pope <http://tpo.pe/>
+" obsession.vim - Fork of Tim Pope's Obsession.vim (https://github.com/tpope/vim-obsession)
+" Maintainer:   studio.vx
 " Version:      1.0
-" GetLatestVimScripts: 4472 1 :AutoInstall: obsession.vim
 
 if exists("g:loaded_obsession") || v:version < 700 || &cp
   finish
