@@ -6,6 +6,7 @@ if exists("g:loaded_obsession") || v:version < 700 || &cp
   finish
 endif
 let g:loaded_obsession = 1
+let g:obsession_last_save = localtime()
 
 command! -bar -bang -complete=file -nargs=? Obsession
       \ execute s:dispatch(<bang>0, <q-args>)
@@ -87,6 +88,7 @@ function! s:persist() abort
       call writefile(body, g:this_obsession)
       let g:this_session = g:this_obsession
       exe s:doautocmd_user('Obsession')
+      let g:obsession_last_save = localtime()
     catch
       unlet g:this_obsession
       let &l:readonly = &l:readonly
@@ -114,6 +116,7 @@ function! ObsessionStatus(...) abort
   else
     let fmt = get(args, 2-numeric, '')
   endif
+  ftm .= ' (' . g:obsession_last_save . ')'
   return substitute(fmt, '%s', get(['', 'Session', 'Obsession'], numeric), 'g')
 endfunction
 
