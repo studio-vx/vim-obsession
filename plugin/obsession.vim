@@ -119,11 +119,7 @@ endfunction
 
 augroup obsession
   autocmd!
-  autocmd VimLeavePre * exe s:persist()
-  autocmd BufEnter *
-        \ if !get(g:, 'obsession_no_bufenter') |
-        \   exe s:persist() |
-        \ endif
+  autocmd BufWritePost * exe s:persist()
   autocmd User Flags call Hoist('global', 'ObsessionStatus')
 augroup END
 
