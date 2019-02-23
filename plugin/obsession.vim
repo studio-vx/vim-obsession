@@ -116,7 +116,7 @@ function! ObsessionStatus(...) abort
   else
     let fmt = get(args, 2-numeric, '')
   endif
-  ftm .= ' (' . g:obsession_last_save . ')'
+  let ftm .= ' (' . g:obsession_last_save . ')'
   return substitute(fmt, '%s', get(['', 'Session', 'Obsession'], numeric), 'g')
 endfunction
 
