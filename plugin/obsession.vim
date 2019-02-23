@@ -116,7 +116,11 @@ function! ObsessionStatus(...) abort
   else
     let fmt = get(args, 2-numeric, '')
   endif
-  let fmt = fmt . ' (' . g:obsession_last_save . ')'
+  let time_since_save = (localtime() - g:obsession_last_save) / 60
+  if time_since_save >= 1
+    let suffix = time_since_save > 1 ? ' mins)' : ' min)'
+    let fmt .= ' (' . time_since_save . suffix
+  endif
   return substitute(fmt, '%s', get(['', 'Session', 'Obsession'], numeric), 'g')
 endfunction
 
